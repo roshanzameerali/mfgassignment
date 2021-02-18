@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbEmployeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EmployeeSkill">
+    <Key>
+      <PropertyRef Name="EmployeeSkill_number" />
+    </Key>
+    <Property Name="EmployeeSkill_number" Type="Int32" Nullable="false" />
+    <Property Name="Employee_id" Type="Int32" />
+    <Property Name="Skill_id" Type="Int32" />
+    <NavigationProperty Name="tblEmployee" Relationship="Self.FK__EmployeeS__Emplo__29572725" FromRole="EmployeeSkill" ToRole="tblEmployee" />
+    <NavigationProperty Name="tblSkill" Relationship="Self.FK__EmployeeS__Skill__2A4B4B5E" FromRole="EmployeeSkill" ToRole="tblSkill" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="Admin_id" />
+    </Key>
+    <Property Name="Admin_id" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Email_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Pincode" Type="Int32" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Department_id" Type="Int32" />
+    <NavigationProperty Name="tblAssignments" Relationship="Self.FK__tblAssign__Admin__22AA2996" FromRole="tblAdmin" ToRole="tblAssignment" />
+    <NavigationProperty Name="tblEmployees" Relationship="Self.FK_AdminId" FromRole="tblAdmin" ToRole="tblEmployee" />
+  </EntityType>
+  <EntityType Name="tblAssignment">
+    <Key>
+      <PropertyRef Name="Assignment_number" />
+    </Key>
+    <Property Name="Assignment_number" Type="Int32" Nullable="false" />
+    <Property Name="Assignment_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Due_date" Type="DateTime" Precision="0" />
+    <Property Name="Department_id" Type="Int32" />
+    <Property Name="Admin_id" Type="Int32" />
+    <Property Name="Employee_id" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAdmin" Relationship="Self.FK__tblAssign__Admin__22AA2996" FromRole="tblAssignment" ToRole="tblAdmin" />
+    <NavigationProperty Name="tblDepartment" Relationship="Self.FK__tblAssign__Depar__21B6055D" FromRole="tblAssignment" ToRole="tblDepartment" />
+    <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblAssign__Emplo__239E4DCF" FromRole="tblAssignment" ToRole="tblEmployee" />
+  </EntityType>
+  <EntityType Name="tblBusinessUnit">
+    <Key>
+      <PropertyRef Name="Unit_id" />
+    </Key>
+    <Property Name="Unit_id" Type="Int32" Nullable="false" />
+    <Property Name="Unit_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Unit___267ABA7A" FromRole="tblBusinessUnit" ToRole="tblEmployee" />
+  </EntityType>
+  <EntityType Name="tblDepartment">
+    <Key>
+      <PropertyRef Name="Department_id" />
+    </Key>
+    <Property Name="Department_id" Type="Int32" Nullable="false" />
+    <Property Name="Department_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAssignments" Relationship="Self.FK__tblAssign__Depar__21B6055D" FromRole="tblDepartment" ToRole="tblAssignment" />
+    <NavigationProperty Name="tblEmployees" Relationship="Self.FK_DepartmentId" FromRole="tblDepartment" ToRole="tblEmployee" />
+  </EntityType>
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="Employee_id" />
+    </Key>
+    <Property Name="Employee_id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Pincode" Type="Int32" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Department_id" Type="Int32" />
+    <Property Name="working_under" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_id" Type="Int32" />
+    <NavigationProperty Name="EmployeeSkills" Relationship="Self.FK__EmployeeS__Emplo__29572725" FromRole="tblEmployee" ToRole="EmployeeSkill" />
+    <NavigationProperty Name="tblAdmin" Relationship="Self.FK_AdminId" FromRole="tblEmployee" ToRole="tblAdmin" />
+    <NavigationProperty Name="tblAssignments" Relationship="Self.FK__tblAssign__Emplo__239E4DCF" FromRole="tblEmployee" ToRole="tblAssignment" />
+    <NavigationProperty Name="tblBusinessUnit" Relationship="Self.FK__tblEmploy__Unit___267ABA7A" FromRole="tblEmployee" ToRole="tblBusinessUnit" />
+    <NavigationProperty Name="tblDepartment" Relationship="Self.FK_DepartmentId" FromRole="tblEmployee" ToRole="tblDepartment" />
+    <NavigationProperty Name="tblEmployeeSkills" Relationship="Self.FK__tblEmploy__Emplo__32E0915F" FromRole="tblEmployee" ToRole="tblEmployeeSkill" />
+  </EntityType>
+  <EntityType Name="tblEmployeeSkill">
+    <Key>
+      <PropertyRef Name="EmployeeSkill_number" />
+    </Key>
+    <Property Name="EmployeeSkill_number" Type="Int32" Nullable="false" />
+    <Property Name="Employee_id" Type="Int32" />
+    <Property Name="Skill_id" Type="Int32" />
+    <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblEmploy__Emplo__32E0915F" FromRole="tblEmployeeSkill" ToRole="tblEmployee" />
+    <NavigationProperty Name="tblSkill" Relationship="Self.FK__tblEmploy__Skill__33D4B598" FromRole="tblEmployeeSkill" ToRole="tblSkills" />
+  </EntityType>
+  <EntityType Name="tblPlacement">
+    <Key>
+      <PropertyRef Name="Placement_id" />
+    </Key>
+    <Property Name="Placement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Pincode" Type="Int32" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Date_of_placement" Type="DateTime" Precision="0" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblSkill">
+    <Key>
+      <PropertyRef Name="Skill_id" />
+    </Key>
+    <Property Name="Skill_id" Type="Int32" Nullable="false" />
+    <Property Name="Skill_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EmployeeSkills" Relationship="Self.FK__EmployeeS__Skill__2A4B4B5E" FromRole="tblSkill" ToRole="EmployeeSkill" />
+  </EntityType>
+  <EntityType Name="tblSkill1">
+    <Key>
+      <PropertyRef Name="Skill_id" />
+    </Key>
+    <Property Name="Skill_id" Type="Int32" Nullable="false" />
+    <Property Name="Skill_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblEmployeeSkills" Relationship="Self.FK__tblEmploy__Skill__33D4B598" FromRole="tblSkills" ToRole="tblEmployeeSkill" />
+  </EntityType>
+  <Association Name="FK__EmployeeS__Emplo__29572725">
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+    <End Role="EmployeeSkill" Type="Self.EmployeeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="Employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeSkill">
+        <PropertyRef Name="Employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmployeeS__Skill__2A4B4B5E">
+    <End Role="tblSkill" Type="Self.tblSkill" Multiplicity="0..1" />
+    <End Role="EmployeeSkill" Type="Self.EmployeeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSkill">
+        <PropertyRef Name="Skill_id" />
+      </Principal>
+      <Dependent Role="EmployeeSkill">
+        <PropertyRef Name="Skill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblAssign__Admin__22AA2996">
+    <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="0..1" />
+    <End Role="tblAssignment" Type="Self.tblAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAdmin">
+        <PropertyRef Name="Admin_id" />
+      </Principal>
+      <Dependent Role="tblAssignment">
+        <PropertyRef Name="Admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminId">
+    <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="0..1" />
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAdmin">
+        <PropertyRef Name="Admin_id" />
+      </Principal>
+      <Dependent Role="tblEmployee">
+        <PropertyRef Name="working_under" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblAssign__Depar__21B6055D">
+    <End Role="tblDepartment" Type="Self.tblDepartment" Multiplicity="0..1" />
+    <End Role="tblAssignment" Type="Self.tblAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDepartment">
+        <PropertyRef Name="Department_id" />
+      </Principal>
+      <Dependent Role="tblAssignment">
+        <PropertyRef Name="Department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblAssign__Emplo__239E4DCF">
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+    <End Role="tblAssignment" Type="Self.tblAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="Employee_id" />
+      </Principal>
+      <Dependent Role="tblAssignment">
+        <PropertyRef Name="Employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblEmploy__Unit___267ABA7A">
+    <End Role="tblBusinessUnit" Type="Self.tblBusinessUnit" Multiplicity="0..1" />
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBusinessUnit">
+        <PropertyRef Name="Unit_id" />
+      </Principal>
+      <Dependent Role="tblEmployee">
+        <PropertyRef Name="Unit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentId">
+    <End Role="tblDepartment" Type="Self.tblDepartment" Multiplicity="0..1" />
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDepartment">
+        <PropertyRef Name="Department_id" />
+      </Principal>
+      <Dependent Role="tblEmployee">
+        <PropertyRef Name="Department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblEmploy__Emplo__32E0915F">
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+    <End Role="tblEmployeeSkill" Type="Self.tblEmployeeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="Employee_id" />
+      </Principal>
+      <Dependent Role="tblEmployeeSkill">
+        <PropertyRef Name="Employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblEmploy__Skill__33D4B598">
+    <End Role="tblSkills" Type="Self.tblSkill1" Multiplicity="0..1" />
+    <End Role="tblEmployeeSkill" Type="Self.tblEmployeeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSkills">
+        <PropertyRef Name="Skill_id" />
+      </Principal>
+      <Dependent Role="tblEmployeeSkill">
+        <PropertyRef Name="Skill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEmployeeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployeeSkills" EntityType="Self.EmployeeSkill" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
+    <EntitySet Name="tblAssignments" EntityType="Self.tblAssignment" />
+    <EntitySet Name="tblBusinessUnits" EntityType="Self.tblBusinessUnit" />
+    <EntitySet Name="tblDepartments" EntityType="Self.tblDepartment" />
+    <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
+    <EntitySet Name="tblEmployeeSkills" EntityType="Self.tblEmployeeSkill" />
+    <EntitySet Name="tblPlacements" EntityType="Self.tblPlacement" />
+    <EntitySet Name="tblSkills" EntityType="Self.tblSkill" />
+    <EntitySet Name="tblSkills1" EntityType="Self.tblSkill1" />
+    <AssociationSet Name="FK__EmployeeS__Emplo__29572725" Association="Self.FK__EmployeeS__Emplo__29572725">
+      <End Role="tblEmployee" EntitySet="tblEmployees" />
+      <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmployeeS__Skill__2A4B4B5E" Association="Self.FK__EmployeeS__Skill__2A4B4B5E">
+      <End Role="tblSkill" EntitySet="tblSkills" />
+      <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblAssign__Admin__22AA2996" Association="Self.FK__tblAssign__Admin__22AA2996">
+      <End Role="tblAdmin" EntitySet="tblAdmins" />
+      <End Role="tblAssignment" EntitySet="tblAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminId" Association="Self.FK_AdminId">
+      <End Role="tblAdmin" EntitySet="tblAdmins" />
+      <End Role="tblEmployee" EntitySet="tblEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblAssign__Depar__21B6055D" Association="Self.FK__tblAssign__Depar__21B6055D">
+      <End Role="tblDepartment" EntitySet="tblDepartments" />
+      <End Role="tblAssignment" EntitySet="tblAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblAssign__Emplo__239E4DCF" Association="Self.FK__tblAssign__Emplo__239E4DCF">
+      <End Role="tblEmployee" EntitySet="tblEmployees" />
+      <End Role="tblAssignment" EntitySet="tblAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblEmploy__Unit___267ABA7A" Association="Self.FK__tblEmploy__Unit___267ABA7A">
+      <End Role="tblBusinessUnit" EntitySet="tblBusinessUnits" />
+      <End Role="tblEmployee" EntitySet="tblEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentId" Association="Self.FK_DepartmentId">
+      <End Role="tblDepartment" EntitySet="tblDepartments" />
+      <End Role="tblEmployee" EntitySet="tblEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblEmploy__Emplo__32E0915F" Association="Self.FK__tblEmploy__Emplo__32E0915F">
+      <End Role="tblEmployee" EntitySet="tblEmployees" />
+      <End Role="tblEmployeeSkill" EntitySet="tblEmployeeSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblEmploy__Skill__33D4B598" Association="Self.FK__tblEmploy__Skill__33D4B598">
+      <End Role="tblSkills" EntitySet="tblSkills1" />
+      <End Role="tblEmployeeSkill" EntitySet="tblEmployeeSkills" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbEmployeeModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbEmployeeModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="GetEmployeeDetails" ReturnType="Collection(dbEmployeeModel.GetEmployeeDetails_Result)">
+      <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_validEmployeeCheck" ReturnType="Collection(Int32)">
+      <Parameter Name="Placement_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetEmployeeDetails_Result">
+    <Property Type="Int32" Name="Employee_id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="DOB" Nullable="true" />
+    <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Pincode" Nullable="true" />
+    <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Department_name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Unit_name" Nullable="true" MaxLength="40" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbEmployeesSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblBusinessUnit">
+    <Key>
+      <PropertyRef Name="Unit_id" />
+    </Key>
+    <Property Name="Unit_id" Type="int" Nullable="false" />
+    <Property Name="Unit_Name" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="tblDepartment">
+    <Key>
+      <PropertyRef Name="Department_id" />
+    </Key>
+    <Property Name="Department_id" Type="int" Nullable="false" />
+    <Property Name="Department_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="Employee_id" />
+    </Key>
+    <Property Name="Employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="20" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="20" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="20" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Email_id" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="20" />
+    <Property Name="Pincode" Type="int" />
+    <Property Name="State" Type="varchar" MaxLength="20" />
+    <Property Name="Department_id" Type="int" />
+    <Property Name="working_under" Type="int" />
+    <Property Name="Unit_id" Type="int" />
+  </EntityType>
+  <Association Name="FK__tblEmploy__Depar__36B12243">
+    <End Role="tblDepartment" Type="Self.tblDepartment" Multiplicity="0..1" />
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDepartment">
+        <PropertyRef Name="Department_id" />
+      </Principal>
+      <Dependent Role="tblEmployee">
+        <PropertyRef Name="Department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblEmploy__Unit___37A5467C">
+    <End Role="tblBusinessUnit" Type="Self.tblBusinessUnit" Multiplicity="0..1" />
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBusinessUnit">
+        <PropertyRef Name="Unit_id" />
+      </Principal>
+      <Dependent Role="tblEmployee">
+        <PropertyRef Name="Unit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="dbEmployeesSystemModelStoreContainer">
+    <EntitySet Name="tblBusinessUnit" EntityType="Self.tblBusinessUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDepartment" EntityType="Self.tblDepartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblEmploy__Depar__36B12243" Association="Self.FK__tblEmploy__Depar__36B12243">
+      <End Role="tblDepartment" EntitySet="tblDepartment" />
+      <End Role="tblEmployee" EntitySet="tblEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblEmploy__Unit___37A5467C" Association="Self.FK__tblEmploy__Unit___37A5467C">
+      <End Role="tblBusinessUnit" EntitySet="tblBusinessUnit" />
+      <End Role="tblEmployee" EntitySet="tblEmployee" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

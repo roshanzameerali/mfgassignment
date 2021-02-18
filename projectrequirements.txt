@@ -1,0 +1,39 @@
+employee management system
+
+1. User register and login into the portal and view his profile
+2. Admin will be able to login and register intoo his portal and view all the employee details
+3. Admin wil be able to edit the designation details of the employee,delete the employee details.
+4. User employee will be able to view his profile and edit his phone number, email id and address.
+5. Admin will be able to post the announcements to the employee
+6. admin will also be able to give assignments to the employee
+
+
+tables:
+
+tblPlacement : Attributes(Placement id(Primary key), Name, Age, Gender, Date of birth, Emailid, Address, City, Pincode, State, Date of placement)
+tblEmployee : Attributes(Employee id(Primary key), Employee Name,Password,Age, Gender, Date of birth, Emailid, Address, City, Pincode, State, Department id(Foreign key), working under(Admin Id foreign key))
+tblAdmin: Attributes(Admin Id(Primary key), Password)
+tblSkills: Attributes(Skill Id(Primary key), Skill Name, Description, Employee Id(Foreign Key))
+tblDepartment: Attributes(Department ID(Primary key), Department Name, Employee Id(Foreign Key))
+tblAssignments: Attributes(Assignment number, Assignment name, Due Date,Department Id(Foreign Key), Admin Id(Foreign Key), Employee Id(Foreign Key))
+tblBussinessUnits: Attributes(Unit_id,Unit_name)
+tblEmployeeSkills: Attributes(EmployeeSkill_no,Employee id,Skill id)
+additional if required: tblOtp
+
+
+Registratoion Detials:
+
+   {
+        
+        "Name": "Sriram",
+        "Password": "sriram233",
+        
+        "Age": 23,
+        "Gender": "Male",
+        "DOB": "1999-08-23",
+        "Email_id": "sriram333@outlook.com",
+        "Address": "rr colony",
+        "City": "Madurai",
+        "Pincode": 560012,
+        "State": "Tamil Nadu",        
+    }
