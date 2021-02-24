@@ -34,6 +34,7 @@
     <Property Name="Department_id" Type="int" />
     <Property Name="working_under" Type="int" />
     <Property Name="Unit_id" Type="int" />
+    <Property Name="mobile_number" Type="varchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK__tblEmploy__Depar__36B12243">
     <End Role="tblDepartment" Type="Self.tblDepartment" Multiplicity="0..1" />

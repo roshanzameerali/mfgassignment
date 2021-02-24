@@ -38,6 +38,7 @@
     <Property Name="Unit_id" Type="Int32" />
     <NavigationProperty Name="tblBusinessUnit" Relationship="Self.FK__tblEmploy__Unit___37A5467C" FromRole="tblEmployee" ToRole="tblBusinessUnit" />
     <NavigationProperty Name="tblDepartment" Relationship="Self.FK__tblEmploy__Depar__36B12243" FromRole="tblEmployee" ToRole="tblDepartment" />
+    <Property Name="mobile_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__tblEmploy__Unit___37A5467C">
     <End Role="tblBusinessUnit" Type="Self.tblBusinessUnit" Multiplicity="0..1" />

@@ -30,6 +30,7 @@ namespace EmployeeManagementSystem.Models
         public Nullable<int> Department_id { get; set; }
         public Nullable<int> working_under { get; set; }
         public Nullable<int> Unit_id { get; set; }
+        public string mobile_number { get; set; }
     
         public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         public virtual tblDepartment tblDepartment { get; set; }
