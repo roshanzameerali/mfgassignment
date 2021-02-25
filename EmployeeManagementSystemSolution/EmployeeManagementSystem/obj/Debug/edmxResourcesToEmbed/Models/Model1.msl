@@ -61,5 +61,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_EmployeeLogin" FunctionName="dbEmployeesSystemModel.Store.proc_EmployeeLogin" />
   </EntityContainerMapping>
 </Mapping>

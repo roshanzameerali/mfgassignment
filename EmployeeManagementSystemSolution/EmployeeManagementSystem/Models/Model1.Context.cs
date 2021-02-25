@@ -48,5 +48,18 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetEmployeeDetails_Result>("proc_GetEmployeeDetails", employeeIdParameter);
         }
+    
+        public virtual ObjectResult<string> proc_EmployeeLogin(Nullable<int> employee_id, string password)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_EmployeeLogin", employee_idParameter, passwordParameter);
+        }
     }
 }

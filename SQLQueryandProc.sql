@@ -28,6 +28,7 @@ Age int NOT NULL,
 Gender varchar(20),
 DOB date,
 Email_id varchar(50),
+
 Address varchar(50),
 City varchar(20),
 Pincode int,
@@ -38,7 +39,7 @@ Unit_id int references tblBusinessUnit(Unit_id)
 )
 
 alter table tblEmployee
-add Last_Name varchar(20)
+add mobile_number varchar(20)
 
 insert into tblEmployee values ('Roshan','roshan123','Software Developer',21,'Male','1999-01-29','roshanzameerali@gmail.com',
 '328,Vallalar Nagar','Salem',636008,'Tamil Nadu',100,1001,111)

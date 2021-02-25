@@ -82,6 +82,10 @@
     <FunctionImport Name="proc_GetEmployeeDetails" ReturnType="Collection(dbEmployeesSystemModel.proc_GetEmployeeDetails_Result)">
       <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_EmployeeLogin" ReturnType="Collection(String)">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />
