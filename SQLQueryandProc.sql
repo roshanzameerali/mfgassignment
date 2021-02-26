@@ -1,4 +1,4 @@
-create database dbEmployees
+ecreate database dbEmployees
 
 use dBEmployees
 
@@ -12,7 +12,7 @@ Password varchar(20)
 
 sp_help tblAdmin
 
-select * from tblAdmin
+	
 
 insert into tblAdmin values(100,'nandhal123','nandha Kumar','Manager',44,'Male','1973-01-21',
 'nandhas@yahoo.com','55,kk nagar','Salem',877000,'TamilNadu',100)
@@ -91,12 +91,10 @@ insert into tblBusinessUnit values(112,'WarnerMEdia')
 /*-------------Procedures---------------*/
 /*-------------To get the Employee Profile-----------*/
 
-create procedure proc_GetEmployeeDetails(@EmployeeId int)
+create procedure storedproc_GetEmployeeDetails(@EmployeeId int)
 as
 begin
-	select Employee_id,First_Name,Last_Name,Role,Age,Gender,DOB,Email_id,Address,City,Pincode,State,Department.Department_name,BusinessUnit.Unit_name from tblEmployee Employee join tblDepartment Department
-	on Employee_id = @EmployeeId and Employee.Department_id = Department.Department_id join tblBusinessUnit BusinessUnit
-	on Employee.Unit_id = BusinessUnit.Unit_id
+	select * from tblEmployee where Employee_id = @EmployeeId
 end
 
 select * from tblEmployee
@@ -109,4 +107,26 @@ begin
 	select Placement_Id from tblPlacement where Placement_id = @Placement_Id
 end
 
-select * from tblPlacement
+/*-----------Employee Login--------------*/
+
+create procedure proc_EmployeeLogin(@Employee_id int,@Password varchar(20))
+as
+begin
+ select Role from tblEmployee where Employee_id = @Employee_id and Password = @Password
+end
+
+
+select * from tblEmployee
+
+
+/*-----------Admin Dashboard Details Procedure-----------*/
+
+create procedure GetAllEmployees
+as
+begin
+select * from tblEmployee where Role != 'Admin' or Role = 'NULL'
+end
+
+update tblEmployee
+set Role = 'developer'
+where Employee_id = 1002

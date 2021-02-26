@@ -65,6 +65,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="int" Mode="In" />
         </Function>
@@ -72,7 +73,14 @@
           <Parameter Name="Employee_id" Type="int" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_GetEmployeesForAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="storedproc_GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="dbEmployeesSystemModelStoreContainer">
@@ -178,6 +186,19 @@
             <Parameter Name="Employee_id" Mode="In" Type="Int32" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="storedproc_GetEmployeeDetails" ReturnType="Collection(dbEmployeesSystemModel.storedproc_GetEmployeeDetails_Result)">
+          <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllEmployees_Result)" />
+          <FunctionImport Name="storedproc_GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.storedproc_GetAllEmployees_Result)" />
+          <FunctionImport Name="procedure_GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.procedure_GetAllEmployees_Result)">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAllEmployees1" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllEmployees1_Result)">
+          <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.GetAllEmployees_Result)" />
+          <FunctionImport Name="proc_GetEmployeesForAdmin" ReturnType="Collection(dbEmployeesSystemModel.proc_GetEmployeesForAdmin_Result)" />
         </EntityContainer>
         <ComplexType Name="proc_GetEmployeeDetails_Result">
           <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -194,6 +215,139 @@
           <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Department_name" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Unit_name" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="storedproc_GetEmployeeDetails_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_GetAllEmployees_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="storedproc_GetAllEmployees_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="procedure_GetAllEmployees_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_GetAllEmployees1_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="GetAllEmployees_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_GetEmployeesForAdmin_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Department_id" Nullable="true" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="Int32" Name="Unit_id" Nullable="true" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -262,7 +416,99 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_EmployeeLogin" FunctionName="dbEmployeesSystemModel.Store.proc_EmployeeLogin" />
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="storedproc_GetEmployeeDetails" FunctionName="dbEmployeesSystemModel.Store.storedproc_GetEmployeeDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.storedproc_GetEmployeeDetails_Result">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+                <ScalarProperty Name="working_under" ColumnName="working_under" />
+                <ScalarProperty Name="Unit_id" ColumnName="Unit_id" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetAllEmployees1" FunctionName="dbEmployeesSystemModel.Store.proc_GetAllEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_GetAllEmployees1_Result">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+                <ScalarProperty Name="working_under" ColumnName="working_under" />
+                <ScalarProperty Name="Unit_id" ColumnName="Unit_id" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllEmployees" FunctionName="dbEmployeesSystemModel.Store.GetAllEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.GetAllEmployees_Result">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+                <ScalarProperty Name="working_under" ColumnName="working_under" />
+                <ScalarProperty Name="Unit_id" ColumnName="Unit_id" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetEmployeesForAdmin" FunctionName="dbEmployeesSystemModel.Store.proc_GetEmployeesForAdmin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_GetEmployeesForAdmin_Result">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+                <ScalarProperty Name="working_under" ColumnName="working_under" />
+                <ScalarProperty Name="Unit_id" ColumnName="Unit_id" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

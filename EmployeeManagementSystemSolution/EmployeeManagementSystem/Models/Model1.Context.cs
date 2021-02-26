@@ -61,5 +61,52 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_EmployeeLogin", employee_idParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<storedproc_GetEmployeeDetails_Result> storedproc_GetEmployeeDetails(Nullable<int> employeeId)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<storedproc_GetEmployeeDetails_Result>("storedproc_GetEmployeeDetails", employeeIdParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAllEmployees_Result> proc_GetAllEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllEmployees_Result>("proc_GetAllEmployees");
+        }
+    
+        public virtual ObjectResult<storedproc_GetAllEmployees_Result> storedproc_GetAllEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<storedproc_GetAllEmployees_Result>("storedproc_GetAllEmployees");
+        }
+    
+        public virtual ObjectResult<procedure_GetAllEmployees_Result> procedure_GetAllEmployees(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<procedure_GetAllEmployees_Result>("procedure_GetAllEmployees", employee_idParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAllEmployees1_Result> proc_GetAllEmployees1(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllEmployees1_Result>("proc_GetAllEmployees1", employee_idParameter);
+        }
+    
+        public virtual ObjectResult<GetAllEmployees_Result> GetAllEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllEmployees_Result>("GetAllEmployees");
+        }
+    
+        public virtual ObjectResult<proc_GetEmployeesForAdmin_Result> proc_GetEmployeesForAdmin()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetEmployeesForAdmin_Result>("proc_GetEmployeesForAdmin");
+        }
     }
 }

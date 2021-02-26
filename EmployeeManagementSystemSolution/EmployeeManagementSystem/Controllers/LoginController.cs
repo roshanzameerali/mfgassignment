@@ -12,9 +12,12 @@ namespace EmployeeManagementSystem.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
-        [HttpGet]
-        public HttpResponseMessage Login(int id,string password)
+        [HttpPost]
+        public HttpResponseMessage Login(tblEmployee Employee)
         {
+            int id = Employee.Employee_id;
+            string password = Employee.Password;
+            
             dbEmployeesSystemEntities1 entities = new dbEmployeesSystemEntities1();
             var result = entities.proc_EmployeeLogin(id,password);
             if (result == null)
@@ -22,5 +25,7 @@ namespace EmployeeManagementSystem.Controllers
             else
                 return Request.CreateResponse(result);
         }
+
+
     }
 }
