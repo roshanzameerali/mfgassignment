@@ -108,5 +108,14 @@ namespace EmployeeManagementSystem.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetEmployeesForAdmin_Result>("proc_GetEmployeesForAdmin");
         }
+    
+        public virtual ObjectResult<GetDepartmentAndUnitNames_Result> GetDepartmentAndUnitNames(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDepartmentAndUnitNames_Result>("GetDepartmentAndUnitNames", employee_idParameter);
+        }
     }
 }

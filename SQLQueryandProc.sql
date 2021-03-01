@@ -121,12 +121,13 @@ select * from tblEmployee
 
 /*-----------Admin Dashboard Details Procedure-----------*/
 
-create procedure GetAllEmployees
+create procedure proc_GetEmployeesForAdmin
 as
 begin
-select * from tblEmployee where Role != 'Admin' or Role = 'NULL'
+select * from tblEmployee where Role != 'Admin' or Role is NULL
 end
 
 update tblEmployee
 set Role = 'developer'
 where Employee_id = 1002
+

@@ -99,6 +99,9 @@
     </FunctionImport>
     <FunctionImport Name="GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.GetAllEmployees_Result)" />
     <FunctionImport Name="proc_GetEmployeesForAdmin" ReturnType="Collection(dbEmployeesSystemModel.proc_GetEmployeesForAdmin_Result)" />
+    <FunctionImport Name="GetDepartmentAndUnitNames" ReturnType="Collection(dbEmployeesSystemModel.GetDepartmentAndUnitNames_Result)">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -248,5 +251,9 @@
     <Property Type="Int32" Name="working_under" Nullable="true" />
     <Property Type="Int32" Name="Unit_id" Nullable="true" />
     <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="GetDepartmentAndUnitNames_Result">
+    <Property Type="String" Name="Unit_Name" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Department_Name" Nullable="true" MaxLength="20" />
   </ComplexType>
 </Schema>

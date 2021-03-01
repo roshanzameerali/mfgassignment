@@ -66,6 +66,9 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDepartmentAndUnitNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="int" Mode="In" />
         </Function>
@@ -199,6 +202,9 @@
           </FunctionImport>
           <FunctionImport Name="GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.GetAllEmployees_Result)" />
           <FunctionImport Name="proc_GetEmployeesForAdmin" ReturnType="Collection(dbEmployeesSystemModel.proc_GetEmployeesForAdmin_Result)" />
+          <FunctionImport Name="GetDepartmentAndUnitNames" ReturnType="Collection(dbEmployeesSystemModel.GetDepartmentAndUnitNames_Result)">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_GetEmployeeDetails_Result">
           <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -348,6 +354,10 @@
           <Property Type="Int32" Name="working_under" Nullable="true" />
           <Property Type="Int32" Name="Unit_id" Nullable="true" />
           <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="GetDepartmentAndUnitNames_Result">
+          <Property Type="String" Name="Unit_Name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Department_Name" Nullable="true" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -505,6 +515,14 @@
                 <ScalarProperty Name="working_under" ColumnName="working_under" />
                 <ScalarProperty Name="Unit_id" ColumnName="Unit_id" />
                 <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDepartmentAndUnitNames" FunctionName="dbEmployeesSystemModel.Store.GetDepartmentAndUnitNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.GetDepartmentAndUnitNames_Result">
+                <ScalarProperty Name="Unit_Name" ColumnName="Unit_Name" />
+                <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
