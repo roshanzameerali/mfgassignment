@@ -107,6 +107,22 @@ begin
 	select Placement_Id from tblPlacement where Placement_id = @Placement_Id
 end
 
+create procedure proc_CheckAlreadyExistingEmployee(@Mobile_Number varchar(20))
+as
+begin
+	select mobile_number from tblEmployee where mobile_number = @Mobile_Number
+end
+
+create procedure proc_GenerateEmployee_id(@Employee_id int)
+as
+begin
+	select Employee_id from tblEmployee where Employee_id = @Employee_id
+end
+
+select * from tblEmployee
+
+
+
 /*-----------Employee Login--------------*/
 
 create procedure proc_EmployeeLogin(@Employee_id int,@Password varchar(20))
@@ -116,7 +132,8 @@ begin
 end
 
 
-select * from tblEmployee
+
+
 
 
 /*-----------Admin Dashboard Details Procedure-----------*/
@@ -130,4 +147,18 @@ end
 update tblEmployee
 set Role = 'developer'
 where Employee_id = 1002
+
+/------------Get Department and Unit Name for Employee---------/
+
+
+
+create procedure GetDepartmentAndUnitNames(@Employee_id int)
+as
+begin
+select BusniessUnit.Unit_Name,Department.Department_Name from tblEmployee Employee join tblBusinessUnit BusniessUnit 
+on Employee.Employee_id = @Employee_id and Employee.Unit_id = BusniessUnit.Unit_id join tblDepartment Department
+on Employee.Department_id = Department.Department_id
+end
+
+select * from tblEmployee
 

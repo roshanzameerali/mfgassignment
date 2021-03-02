@@ -162,5 +162,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CheckAlreadyExistingEmployee" FunctionName="dbEmployeesSystemModel.Store.proc_CheckAlreadyExistingEmployee" />
+    <FunctionImportMapping FunctionImportName="proc_GenerateEmployee_id" FunctionName="dbEmployeesSystemModel.Store.proc_GenerateEmployee_id" />
   </EntityContainerMapping>
 </Mapping>

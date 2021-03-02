@@ -102,6 +102,12 @@
     <FunctionImport Name="GetDepartmentAndUnitNames" ReturnType="Collection(dbEmployeesSystemModel.GetDepartmentAndUnitNames_Result)">
       <Parameter Name="Employee_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_CheckAlreadyExistingEmployee" ReturnType="Collection(String)">
+      <Parameter Name="Mobile_Number" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GenerateEmployee_id" ReturnType="Collection(Int32)">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />

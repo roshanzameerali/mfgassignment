@@ -117,5 +117,23 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDepartmentAndUnitNames_Result>("GetDepartmentAndUnitNames", employee_idParameter);
         }
+    
+        public virtual ObjectResult<string> proc_CheckAlreadyExistingEmployee(string mobile_Number)
+        {
+            var mobile_NumberParameter = mobile_Number != null ?
+                new ObjectParameter("Mobile_Number", mobile_Number) :
+                new ObjectParameter("Mobile_Number", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("proc_CheckAlreadyExistingEmployee", mobile_NumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> proc_GenerateEmployee_id(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("proc_GenerateEmployee_id", employee_idParameter);
+        }
     }
 }

@@ -72,9 +72,15 @@
         <Function Name="GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_CheckAlreadyExistingEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mobile_Number" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_EmployeeLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Employee_id" Type="int" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GenerateEmployee_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
         </Function>
         <Function Name="proc_GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Employee_id" Type="int" Mode="In" />
@@ -203,6 +209,12 @@
           <FunctionImport Name="GetAllEmployees" ReturnType="Collection(dbEmployeesSystemModel.GetAllEmployees_Result)" />
           <FunctionImport Name="proc_GetEmployeesForAdmin" ReturnType="Collection(dbEmployeesSystemModel.proc_GetEmployeesForAdmin_Result)" />
           <FunctionImport Name="GetDepartmentAndUnitNames" ReturnType="Collection(dbEmployeesSystemModel.GetDepartmentAndUnitNames_Result)">
+          <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CheckAlreadyExistingEmployee" ReturnType="Collection(String)">
+            <Parameter Name="Mobile_Number" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GenerateEmployee_id" ReturnType="Collection(Int32)">
             <Parameter Name="Employee_id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -526,6 +538,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_CheckAlreadyExistingEmployee" FunctionName="dbEmployeesSystemModel.Store.proc_CheckAlreadyExistingEmployee" />
+          <FunctionImportMapping FunctionImportName="proc_GenerateEmployee_id" FunctionName="dbEmployeesSystemModel.Store.proc_GenerateEmployee_id" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
