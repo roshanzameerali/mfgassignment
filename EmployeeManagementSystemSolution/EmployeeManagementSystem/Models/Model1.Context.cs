@@ -135,5 +135,33 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("proc_GenerateEmployee_id", employee_idParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> proc_GetDepartmentId(string department_Name)
+        {
+            var department_NameParameter = department_Name != null ?
+                new ObjectParameter("Department_Name", department_Name) :
+                new ObjectParameter("Department_Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("proc_GetDepartmentId", department_NameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> proc_GetUnitId(string unit_Name)
+        {
+            var unit_NameParameter = unit_Name != null ?
+                new ObjectParameter("Unit_Name", unit_Name) :
+                new ObjectParameter("Unit_Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("proc_GetUnitId", unit_NameParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAllBusinessUnits_Result> proc_GetAllBusinessUnits()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllBusinessUnits_Result>("proc_GetAllBusinessUnits");
+        }
+    
+        public virtual ObjectResult<proc_GetAllDepartments_Result> proc_GetAllDepartments()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllDepartments_Result>("proc_GetAllDepartments");
+        }
     }
 }

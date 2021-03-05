@@ -164,5 +164,21 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_CheckAlreadyExistingEmployee" FunctionName="dbEmployeesSystemModel.Store.proc_CheckAlreadyExistingEmployee" />
     <FunctionImportMapping FunctionImportName="proc_GenerateEmployee_id" FunctionName="dbEmployeesSystemModel.Store.proc_GenerateEmployee_id" />
+    <FunctionImportMapping FunctionImportName="proc_GetAllBusinessUnits" FunctionName="dbEmployeesSystemModel.Store.proc_GetAllBusinessUnits">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_GetAllBusinessUnits_Result">
+          <ScalarProperty Name="Unit_id" ColumnName="Unit_id" />
+          <ScalarProperty Name="Unit_Name" ColumnName="Unit_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAllDepartments" FunctionName="dbEmployeesSystemModel.Store.proc_GetAllDepartments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_GetAllDepartments_Result">
+          <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+          <ScalarProperty Name="Department_name" ColumnName="Department_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

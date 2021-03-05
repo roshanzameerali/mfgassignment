@@ -108,6 +108,14 @@
     <FunctionImport Name="proc_GenerateEmployee_id" ReturnType="Collection(Int32)">
       <Parameter Name="Employee_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_GetDepartmentId" ReturnType="Collection(Int32)">
+      <Parameter Name="Department_Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetUnitId" ReturnType="Collection(Int32)">
+      <Parameter Name="Unit_Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetAllBusinessUnits" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllBusinessUnits_Result)" />
+    <FunctionImport Name="proc_GetAllDepartments" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllDepartments_Result)" />
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -261,5 +269,13 @@
   <ComplexType Name="GetDepartmentAndUnitNames_Result">
     <Property Type="String" Name="Unit_Name" Nullable="true" MaxLength="40" />
     <Property Type="String" Name="Department_Name" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="proc_GetAllBusinessUnits_Result">
+    <Property Type="Int32" Name="Unit_id" Nullable="false" />
+    <Property Type="String" Name="Unit_Name" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="proc_GetAllDepartments_Result">
+    <Property Type="Int32" Name="Department_id" Nullable="false" />
+    <Property Type="String" Name="Department_name" Nullable="true" MaxLength="20" />
   </ComplexType>
 </Schema>
