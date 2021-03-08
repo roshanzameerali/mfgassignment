@@ -46,6 +46,9 @@ insert into tblEmployee values ('Roshan','roshan123','Software Developer',21,'Ma
 
 select * from tblEmployee
 
+update tblEmployee
+set Unit_id = 112
+where Employee_id = 1001
 
 alter table tblEmployee
 add password varchar(20)
@@ -160,5 +163,22 @@ on Employee.Employee_id = @Employee_id and Employee.Unit_id = BusniessUnit.Unit_
 on Employee.Department_id = Department.Department_id
 end
 
-select * from tblEmployee
+select * from tblDepartment
 
+select Department_id from tblDepartment where Department_name = 'Manufacturing'
+
+select Unit_id from tblBusinessUnit where Unit_Name = 'Honda'
+
+create procedure proc_GetAllBusinessUnits
+as
+begin
+	select * from tblBusinessUnit
+end
+
+create procedure proc_GetAllDepartments
+as
+begin
+	select * from tblDepartment
+end
+
+select * from tblEmployee

@@ -75,6 +75,9 @@
         <Function Name="proc_CheckAlreadyExistingEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Mobile_Number" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_deleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_EmployeeLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Employee_id" Type="int" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
@@ -227,6 +230,9 @@
           </FunctionImport>
           <FunctionImport Name="proc_GetAllBusinessUnits" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllBusinessUnits_Result)" />
           <FunctionImport Name="proc_GetAllDepartments" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllDepartments_Result)" />
+          <FunctionImport Name="proc_deleteEmployee">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_GetEmployeeDetails_Result">
           <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -574,6 +580,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_deleteEmployee" FunctionName="dbEmployeesSystemModel.Store.proc_deleteEmployee" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

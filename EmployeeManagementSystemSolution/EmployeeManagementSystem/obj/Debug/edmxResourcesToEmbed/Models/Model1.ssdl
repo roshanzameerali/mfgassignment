@@ -70,6 +70,9 @@
   <Function Name="proc_CheckAlreadyExistingEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Mobile_Number" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_deleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Employee_id" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_EmployeeLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Employee_id" Type="int" Mode="In" />
     <Parameter Name="Password" Type="varchar" Mode="In" />

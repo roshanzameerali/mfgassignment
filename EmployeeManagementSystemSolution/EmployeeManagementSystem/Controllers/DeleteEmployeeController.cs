@@ -7,23 +7,22 @@ using System.Web.Http;
 using EmployeeManagementSystem.Models;
 using System.Web.Http.Cors;
 
+
 namespace EmployeeManagementSystem.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class AdminDashboardController : ApiController
+    public class DeleteEmployeeController : ApiController
     {
-        [HttpGet]
-        public HttpResponseMessage GetEmployeeDetails()
+        [HttpDelete]
+        public HttpResponseMessage DeleteEmployee(int id)
         {
             dbEmployeesSystemEntities1 entities = new dbEmployeesSystemEntities1();
-            var result = entities.proc_GetEmployeesForAdmin();
+            var result = entities.proc_deleteEmployee(id);
             if (result == null)
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No Employees are there");
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No Employees to delete");
             else
                 return Request.CreateResponse(result);
         }
-
-
 
     }
 }

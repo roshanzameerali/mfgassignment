@@ -163,5 +163,14 @@ namespace EmployeeManagementSystem.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAllDepartments_Result>("proc_GetAllDepartments");
         }
+    
+        public virtual int proc_deleteEmployee(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_deleteEmployee", employee_idParameter);
+        }
     }
 }

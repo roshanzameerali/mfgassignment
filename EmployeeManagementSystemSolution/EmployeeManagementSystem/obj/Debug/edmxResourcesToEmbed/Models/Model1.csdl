@@ -116,6 +116,9 @@
     </FunctionImport>
     <FunctionImport Name="proc_GetAllBusinessUnits" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllBusinessUnits_Result)" />
     <FunctionImport Name="proc_GetAllDepartments" ReturnType="Collection(dbEmployeesSystemModel.proc_GetAllDepartments_Result)" />
+    <FunctionImport Name="proc_deleteEmployee">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />

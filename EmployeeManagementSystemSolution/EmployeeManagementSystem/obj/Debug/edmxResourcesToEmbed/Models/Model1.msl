@@ -180,5 +180,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_deleteEmployee" FunctionName="dbEmployeesSystemModel.Store.proc_deleteEmployee" />
   </EntityContainerMapping>
 </Mapping>
