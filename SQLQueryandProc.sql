@@ -169,6 +169,8 @@ select Department_id from tblDepartment where Department_name = 'Manufacturing'
 
 select Unit_id from tblBusinessUnit where Unit_Name = 'Honda'
 
+/*------For Drop down options-------*/
+
 create procedure proc_GetAllBusinessUnits
 as
 begin
@@ -182,3 +184,17 @@ begin
 end
 
 select * from tblEmployee
+
+/*------Delete Employee-----*/
+
+select * from tblEmployee
+
+delete from tblEmployee
+where Employee_id = 1005
+
+create procedure proc_deleteEmployee(@Employee_id int)
+as
+begin
+	delete from tblEmployee
+	where Employee_id = @Employee_id
+end
