@@ -189,8 +189,12 @@ select * from tblEmployee
 
 select * from tblEmployee
 
+update tblEmployee
+set Password = 'ROSHANnew1'
+where Role = 'Admin'
+
 delete from tblEmployee
-where Employee_id = 1005
+where Role != 'Admin'
 
 create procedure proc_deleteEmployee(@Employee_id int)
 as
