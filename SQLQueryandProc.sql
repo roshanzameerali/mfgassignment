@@ -202,3 +202,39 @@ begin
 	delete from tblEmployee
 	where Employee_id = @Employee_id
 end
+
+
+/*-------Organisation Chart----------*/
+
+select * from tblEmployee
+
+update tblEmployee 
+set working_under=1010 where Role = 'Quality Analyst'
+
+/*------Peers-----------*/
+
+select  * from tblEmployee Employee , tblEmployee Emp 
+where Employee.Employee_id = 1010 AND Employee.working_under =1000 
+order by Employee.working_under
+
+select count(*) from tblEmployee group by working_under
+
+create table tblWorkingUnder
+(Employee_id int primary key,
+working_under int,
+)
+
+
+
+insert into tblWorkingUnder values(1057,1012)
+
+
+select * from tblWorkingUnder where Employee_id = 1010 or working_under = 1000
+
+create procedure proc_GetPeers(@Employee_id int,@working_under int)
+as
+begin
+  select * from tblWorkingUnder where Employee_id = @Employee_id or working_under = @working_under
+end
+
+select * from tblWorkingUnder where Employee_id = 1055 or working_under = 1012

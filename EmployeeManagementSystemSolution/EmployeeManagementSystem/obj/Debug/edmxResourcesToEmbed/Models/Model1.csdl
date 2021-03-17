@@ -119,6 +119,46 @@
     <FunctionImport Name="proc_deleteEmployee">
       <Parameter Name="Employee_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="dbEmployeesSystemModel.sysdiagram" />
+    <FunctionImport Name="GetPeers" ReturnType="Collection(dbEmployeesSystemModel.GetPeers_Result)">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+      <Parameter Name="working_under" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbEmployeesSystemModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbEmployeesSystemModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="proc_GetPeers" ReturnType="Collection(dbEmployeesSystemModel.proc_GetPeers_Result)">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+      <Parameter Name="working_under" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tblWorkingUnders" EntityType="dbEmployeesSystemModel.tblWorkingUnder" />
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -281,4 +321,40 @@
     <Property Type="Int32" Name="Department_id" Nullable="false" />
     <Property Type="String" Name="Department_name" Nullable="true" MaxLength="20" />
   </ComplexType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="GetPeers_Result">
+    <Property Type="Int32" Name="Employee_id" Nullable="true" />
+    <Property Type="Int32" Name="working_under" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_GetPeers_Result">
+    <Property Type="Int32" Name="Employee_id" Nullable="true" />
+    <Property Type="Int32" Name="working_under" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tblWorkingUnder">
+    <Key>
+      <PropertyRef Name="Employee_id" />
+    </Key>
+    <Property Name="Employee_id" Type="Int32" Nullable="false" />
+    <Property Name="working_under" Type="Int32" />
+  </EntityType>
 </Schema>
