@@ -303,5 +303,27 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetPeers_Result>("proc_GetPeers", employee_idParameter, working_underParameter);
         }
+    
+        public virtual int proc_InsertIntoWorkingUnder(Nullable<int> employee_id, Nullable<int> working_under)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            var working_underParameter = working_under.HasValue ?
+                new ObjectParameter("working_under", working_under) :
+                new ObjectParameter("working_under", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsertIntoWorkingUnder", employee_idParameter, working_underParameter);
+        }
+    
+        public virtual ObjectResult<proc_ViewDetails_Result> proc_ViewDetails(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_ViewDetails_Result>("proc_ViewDetails", employee_idParameter);
+        }
     }
 }

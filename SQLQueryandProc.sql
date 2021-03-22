@@ -1,4 +1,4 @@
-ecreate database dbEmployees
+		ecreate database dbEmployees
 
 use dBEmployees
 
@@ -15,7 +15,7 @@ sp_help tblAdmin
 	
 
 insert into tblAdmin values(100,'nandhal123','nandha Kumar','Manager',44,'Male','1973-01-21',
-'nandhas@yahoo.com','55,kk nagar','Salem',877000,'TamilNadu',100)
+'nandhas@yahoo.com','55,kk nag	ar','Salem',877000,'TamilNadu',100)
 
 
 create table tblEmployee
@@ -238,3 +238,5 @@ begin
 end
 
 select * from tblWorkingUnder where Employee_id = 1055 or working_under = 1012
+
+select Employee_id from tblEmployee

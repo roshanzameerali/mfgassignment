@@ -120,6 +120,13 @@
           <Parameter Name="Employee_id" Type="int" Mode="In" />
           <Parameter Name="working_under" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_InsertIntoWorkingUnder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+          <Parameter Name="working_under" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_ViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -331,6 +338,13 @@
             <Parameter Name="working_under" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="tblWorkingUnders" EntityType="dbEmployeesSystemModel.tblWorkingUnder" />
+          <FunctionImport Name="proc_InsertIntoWorkingUnder">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+            <Parameter Name="working_under" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ViewDetails" ReturnType="Collection(dbEmployeesSystemModel.proc_ViewDetails_Result)">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_GetEmployeeDetails_Result">
           <Property Type="Int32" Name="Employee_id" Nullable="false" />
@@ -529,6 +543,12 @@
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
           <Property Name="working_under" Type="Int32" />
         </EntityType>
+        <ComplexType Name="proc_ViewDetails_Result">
+          <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -774,6 +794,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_InsertIntoWorkingUnder" FunctionName="dbEmployeesSystemModel.Store.proc_InsertIntoWorkingUnder" />
+          <FunctionImportMapping FunctionImportName="proc_ViewDetails" FunctionName="dbEmployeesSystemModel.Store.proc_ViewDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_ViewDetails_Result">
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

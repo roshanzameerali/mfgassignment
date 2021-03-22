@@ -22,10 +22,12 @@ namespace EmployeeManagementSystem.Controllers
             [HttpPut]
             public void RolePut(int id, tblEmployee Employee)
             {
-            tblEmployee UpdateEmployee = entities.tblEmployees.Find(id);
+                tblEmployee UpdateEmployee = entities.tblEmployees.Find(id);
                 UpdateEmployee.Role = Employee.Role;
+                UpdateEmployee.working_under = Employee.working_under;
                 UpdateEmployee.Department_id = Employee.Department_id;
                 UpdateEmployee.Unit_id = Employee.Unit_id;
+                entities.proc_InsertIntoWorkingUnder(id, Employee.working_under);
                 entities.SaveChanges();
             }
 
