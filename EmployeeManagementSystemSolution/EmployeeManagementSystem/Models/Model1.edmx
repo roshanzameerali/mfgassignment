@@ -57,6 +57,10 @@
           </Key>
           <Property Name="Employee_id" Type="int" Nullable="false" />
           <Property Name="working_under" Type="int" />
+          <Property Name="First_Name" Type="varchar" MaxLength="20" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="20" />
+          <Property Name="Email_id" Type="varchar" MaxLength="50" />
+          <Property Name="mobile_number" Type="varchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK__tblEmploy__Depar__36B12243">
           <End Role="tblDepartment" Type="Self.tblDepartment" Multiplicity="0..1" />
@@ -115,6 +119,9 @@
         <Function Name="proc_GetEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_GetEmployeeIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_GetEmployeesForAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_GetPeers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Employee_id" Type="int" Mode="In" />
@@ -126,6 +133,18 @@
         </Function>
         <Function Name="proc_ViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Employee_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="procedure_GetPeers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+          <Parameter Name="working_under" Type="int" Mode="In" />
+        </Function>
+        <Function Name="procedure_InsertIntoWorkingUnder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+          <Parameter Name="working_under" Type="int" Mode="In" />
+          <Parameter Name="First_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email_id" Type="varchar" Mode="In" />
+          <Parameter Name="mobile_number" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -343,7 +362,22 @@
             <Parameter Name="working_under" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_ViewDetails" ReturnType="Collection(dbEmployeesSystemModel.proc_ViewDetails_Result)">
+          <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetEmployeeIds" ReturnType="Collection(Int32)">
+          <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="procedure_InsertIntoWorkingUnder">
             <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+            <Parameter Name="working_under" Mode="In" Type="Int32" />
+            <Parameter Name="First_Name" Mode="In" Type="String" />
+            <Parameter Name="Last_Name" Mode="In" Type="String" />
+            <Parameter Name="Email_id" Mode="In" Type="String" />
+            <Parameter Name="mobile_number" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="procedure_GetPeers" ReturnType="Collection(dbEmployeesSystemModel.procedure_GetPeers_Result)">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+            <Parameter Name="working_under" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_GetEmployeeDetails_Result">
@@ -542,9 +576,21 @@
           </Key>
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
           <Property Name="working_under" Type="Int32" />
+          <Property Name="First_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="proc_ViewDetails_Result">
           <Property Type="String" Name="First_Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="procedure_GetPeers_Result">
+          <Property Type="Int32" Name="Employee_id" Nullable="false" />
+          <Property Type="Int32" Name="working_under" Nullable="true" />
+          <Property Type="String" Name="First_Name" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Email_id" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="mobile_number" Nullable="true" MaxLength="20" />
@@ -789,6 +835,10 @@
           <EntitySetMapping Name="tblWorkingUnders">
             <EntityTypeMapping TypeName="dbEmployeesSystemModel.tblWorkingUnder">
               <MappingFragment StoreEntitySet="tblWorkingUnder">
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
                 <ScalarProperty Name="working_under" ColumnName="working_under" />
                 <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
               </MappingFragment>
@@ -798,6 +848,20 @@
           <FunctionImportMapping FunctionImportName="proc_ViewDetails" FunctionName="dbEmployeesSystemModel.Store.proc_ViewDetails">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_ViewDetails_Result">
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetEmployeeIds" FunctionName="dbEmployeesSystemModel.Store.proc_GetEmployeeIds" />
+          <FunctionImportMapping FunctionImportName="procedure_InsertIntoWorkingUnder" FunctionName="dbEmployeesSystemModel.Store.procedure_InsertIntoWorkingUnder" />
+          <FunctionImportMapping FunctionImportName="procedure_GetPeers" FunctionName="dbEmployeesSystemModel.Store.procedure_GetPeers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEmployeesSystemModel.procedure_GetPeers_Result">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="working_under" ColumnName="working_under" />
                 <ScalarProperty Name="First_Name" ColumnName="First_Name" />
                 <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
                 <ScalarProperty Name="Email_id" ColumnName="Email_id" />

@@ -325,5 +325,56 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_ViewDetails_Result>("proc_ViewDetails", employee_idParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> proc_GetEmployeeIds(Nullable<int> employee_id)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("proc_GetEmployeeIds", employee_idParameter);
+        }
+    
+        public virtual int procedure_InsertIntoWorkingUnder(Nullable<int> employee_id, Nullable<int> working_under, string first_Name, string last_Name, string email_id, string mobile_number)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            var working_underParameter = working_under.HasValue ?
+                new ObjectParameter("working_under", working_under) :
+                new ObjectParameter("working_under", typeof(int));
+    
+            var first_NameParameter = first_Name != null ?
+                new ObjectParameter("First_Name", first_Name) :
+                new ObjectParameter("First_Name", typeof(string));
+    
+            var last_NameParameter = last_Name != null ?
+                new ObjectParameter("Last_Name", last_Name) :
+                new ObjectParameter("Last_Name", typeof(string));
+    
+            var email_idParameter = email_id != null ?
+                new ObjectParameter("Email_id", email_id) :
+                new ObjectParameter("Email_id", typeof(string));
+    
+            var mobile_numberParameter = mobile_number != null ?
+                new ObjectParameter("mobile_number", mobile_number) :
+                new ObjectParameter("mobile_number", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("procedure_InsertIntoWorkingUnder", employee_idParameter, working_underParameter, first_NameParameter, last_NameParameter, email_idParameter, mobile_numberParameter);
+        }
+    
+        public virtual ObjectResult<procedure_GetPeers_Result> procedure_GetPeers(Nullable<int> employee_id, Nullable<int> working_under)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            var working_underParameter = working_under.HasValue ?
+                new ObjectParameter("working_under", working_under) :
+                new ObjectParameter("working_under", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<procedure_GetPeers_Result>("procedure_GetPeers", employee_idParameter, working_underParameter);
+        }
     }
 }

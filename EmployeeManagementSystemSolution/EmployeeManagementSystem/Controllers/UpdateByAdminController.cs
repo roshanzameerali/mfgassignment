@@ -27,7 +27,7 @@ namespace EmployeeManagementSystem.Controllers
                 UpdateEmployee.working_under = Employee.working_under;
                 UpdateEmployee.Department_id = Employee.Department_id;
                 UpdateEmployee.Unit_id = Employee.Unit_id;
-                entities.proc_InsertIntoWorkingUnder(id, Employee.working_under);
+                entities.procedure_InsertIntoWorkingUnder(id, Employee.working_under,Employee.First_Name,Employee.Last_Name,Employee.Email_id,Employee.mobile_number);
                 entities.SaveChanges();
             }
 

@@ -235,6 +235,10 @@
     <EntitySetMapping Name="tblWorkingUnders">
       <EntityTypeMapping TypeName="dbEmployeesSystemModel.tblWorkingUnder">
         <MappingFragment StoreEntitySet="tblWorkingUnder">
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
           <ScalarProperty Name="working_under" ColumnName="working_under" />
           <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
         </MappingFragment>
@@ -244,6 +248,20 @@
     <FunctionImportMapping FunctionImportName="proc_ViewDetails" FunctionName="dbEmployeesSystemModel.Store.proc_ViewDetails">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbEmployeesSystemModel.proc_ViewDetails_Result">
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetEmployeeIds" FunctionName="dbEmployeesSystemModel.Store.proc_GetEmployeeIds" />
+    <FunctionImportMapping FunctionImportName="procedure_InsertIntoWorkingUnder" FunctionName="dbEmployeesSystemModel.Store.procedure_InsertIntoWorkingUnder" />
+    <FunctionImportMapping FunctionImportName="procedure_GetPeers" FunctionName="dbEmployeesSystemModel.Store.procedure_GetPeers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbEmployeesSystemModel.procedure_GetPeers_Result">
+          <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+          <ScalarProperty Name="working_under" ColumnName="working_under" />
           <ScalarProperty Name="First_Name" ColumnName="First_Name" />
           <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
           <ScalarProperty Name="Email_id" ColumnName="Email_id" />

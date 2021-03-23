@@ -240,3 +240,23 @@ end
 select * from tblWorkingUnder where Employee_id = 1055 or working_under = 1012
 
 select Employee_id from tblEmployee
+
+create procedure proc_InsertIntoWorkingUnder(@Employee_id int, @working_under int)
+as
+begin
+	insert into tblWorkingUnder values(@Employee_id,@working_under)
+end
+
+
+select * from tblWorkingUnder
+
+select * from tblEmployee
+
+
+
+create procedure proc_ViewDetails(@Employee_id int)
+as
+begin
+	select First_Name,Last_Name,Email_id,mobile_number from tblEmployee where Employee_id = @Employee_id
+end
+

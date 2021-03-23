@@ -10,9 +10,8 @@
 namespace EmployeeManagementSystem.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblWorkingUnder
+    public partial class procedure_GetPeers_Result
     {
         public int Employee_id { get; set; }
         public Nullable<int> working_under { get; set; }

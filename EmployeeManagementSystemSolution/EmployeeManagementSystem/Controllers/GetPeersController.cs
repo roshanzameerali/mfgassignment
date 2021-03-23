@@ -19,7 +19,7 @@ namespace EmployeeManagementSystem.Controllers
 
             int id = Employee.Employee_id;
             int? working_number = Employee.working_under;
-            var result = entities.GetPeers(id, working_number);
+            var result = entities.procedure_GetPeers(id, working_number);
             if (result == null)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No Employees are there");
             else
