@@ -181,6 +181,14 @@
       <Parameter Name="Employee_id" Mode="In" Type="Int32" />
       <Parameter Name="working_under" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_InsertIntoWorkingUnder">
+      <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+      <Parameter Name="working_under" Mode="In" Type="Int32" />
+      <Parameter Name="First_Name" Mode="In" Type="String" />
+      <Parameter Name="Last_Name" Mode="In" Type="String" />
+      <Parameter Name="Email_id" Mode="In" Type="String" />
+      <Parameter Name="mobile_number" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_GetEmployeeDetails_Result">
     <Property Type="Int32" Name="Employee_id" Nullable="false" />

@@ -269,5 +269,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InsertIntoWorkingUnder" FunctionName="dbEmployeesSystemModel.Store.sp_InsertIntoWorkingUnder" />
   </EntityContainerMapping>
 </Mapping>

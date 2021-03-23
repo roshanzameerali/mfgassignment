@@ -170,6 +170,14 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_InsertIntoWorkingUnder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employee_id" Type="int" Mode="In" />
+          <Parameter Name="working_under" Type="int" Mode="In" />
+          <Parameter Name="First_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email_id" Type="varchar" Mode="In" />
+          <Parameter Name="mobile_number" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -378,6 +386,14 @@
           <FunctionImport Name="procedure_GetPeers" ReturnType="Collection(dbEmployeesSystemModel.procedure_GetPeers_Result)">
             <Parameter Name="Employee_id" Mode="In" Type="Int32" />
             <Parameter Name="working_under" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertIntoWorkingUnder">
+            <Parameter Name="Employee_id" Mode="In" Type="Int32" />
+            <Parameter Name="working_under" Mode="In" Type="Int32" />
+            <Parameter Name="First_Name" Mode="In" Type="String" />
+            <Parameter Name="Last_Name" Mode="In" Type="String" />
+            <Parameter Name="Email_id" Mode="In" Type="String" />
+            <Parameter Name="mobile_number" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_GetEmployeeDetails_Result">
@@ -869,6 +885,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertIntoWorkingUnder" FunctionName="dbEmployeesSystemModel.Store.sp_InsertIntoWorkingUnder" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

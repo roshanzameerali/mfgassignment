@@ -165,6 +165,14 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_InsertIntoWorkingUnder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Employee_id" Type="int" Mode="In" />
+    <Parameter Name="working_under" Type="int" Mode="In" />
+    <Parameter Name="First_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Email_id" Type="varchar" Mode="In" />
+    <Parameter Name="mobile_number" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />

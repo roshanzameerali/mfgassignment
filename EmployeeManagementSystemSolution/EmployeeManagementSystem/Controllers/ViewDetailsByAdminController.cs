@@ -26,6 +26,20 @@ namespace EmployeeManagementSystem.Controllers
                 return Request.CreateResponse(result);
         }
 
+        [Route("GetEmployeeIds")]
+        [HttpGet]
+        public HttpResponseMessage GetEmployeeIds(int id)
+        {
+            dbEmployeesSystemEntities1 entities = new dbEmployeesSystemEntities1();
+            var result = entities.proc_GetEmployeeIds(id);
+            if (result == null)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No Employees are there");
+            else
+                return Request.CreateResponse(result);
+        }
+
+
+
         [Route("ViewEmployeeDetails")]
         [HttpGet]
         public HttpResponseMessage ViewEmployeeDetails(int id)

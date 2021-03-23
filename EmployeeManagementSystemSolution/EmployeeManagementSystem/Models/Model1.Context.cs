@@ -376,5 +376,34 @@ namespace EmployeeManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<procedure_GetPeers_Result>("procedure_GetPeers", employee_idParameter, working_underParameter);
         }
+    
+        public virtual int sp_InsertIntoWorkingUnder(Nullable<int> employee_id, Nullable<int> working_under, string first_Name, string last_Name, string email_id, string mobile_number)
+        {
+            var employee_idParameter = employee_id.HasValue ?
+                new ObjectParameter("Employee_id", employee_id) :
+                new ObjectParameter("Employee_id", typeof(int));
+    
+            var working_underParameter = working_under.HasValue ?
+                new ObjectParameter("working_under", working_under) :
+                new ObjectParameter("working_under", typeof(int));
+    
+            var first_NameParameter = first_Name != null ?
+                new ObjectParameter("First_Name", first_Name) :
+                new ObjectParameter("First_Name", typeof(string));
+    
+            var last_NameParameter = last_Name != null ?
+                new ObjectParameter("Last_Name", last_Name) :
+                new ObjectParameter("Last_Name", typeof(string));
+    
+            var email_idParameter = email_id != null ?
+                new ObjectParameter("Email_id", email_id) :
+                new ObjectParameter("Email_id", typeof(string));
+    
+            var mobile_numberParameter = mobile_number != null ?
+                new ObjectParameter("mobile_number", mobile_number) :
+                new ObjectParameter("mobile_number", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertIntoWorkingUnder", employee_idParameter, working_underParameter, first_NameParameter, last_NameParameter, email_idParameter, mobile_numberParameter);
+        }
     }
 }
