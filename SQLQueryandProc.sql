@@ -183,6 +183,8 @@ begin
 	select * from tblDepartment
 end
 
+create 
+
 select * from tblEmployee
 
 /*------Delete Employee-----*/
@@ -231,11 +233,7 @@ insert into tblWorkingUnder values(1057,1012)
 
 select * from tblWorkingUnder where Employee_id = 1010 or working_under = 1000
 
-create procedure proc_GetPeers(@Employee_id int,@working_under int)
-as
-begin
-  select * from tblWorkingUnder where Employee_id = @Employee_id or working_under = @working_under
-end
+
 
 select * from tblWorkingUnder where Employee_id = 1055 or working_under = 1012
 
@@ -245,6 +243,14 @@ create procedure proc_InsertIntoWorkingUnder(@Employee_id int, @working_under in
 as
 begin
 	insert into tblWorkingUnder values(@Employee_id,@working_under)
+end
+
+create procedure sp_InsertIntoWorkingUnder(@Employee_id int, @working_under int,@First_Name varchar(20)
+,@Last_Name varchar(20),@Email_id varchar(50),@mobile_number varchar(20))
+as
+begin
+	delete from tblWorkingUnder where Employee_id = @Employee_id
+	insert into tblWorkingUnder values(@Employee_id,@working_under,@First_Name,@Last_Name,@Email_id,@mobile_number)
 end
 
 
@@ -260,3 +266,25 @@ begin
 	select First_Name,Last_Name,Email_id,mobile_number from tblEmployee where Employee_id = @Employee_id
 end
 
+create procedure proc_GetEmployeeIds(@Employee_id int)
+as
+begin
+	select Employee_id from tblEmployee where Employee_id <> @Employee_id and Role <> 'Admin'
+end
+
+
+
+
+select * from tblWorkingUnder
+
+alter table tblWorkingUnder 
+add mobile_number varchar(20)
+
+delete from tblWorkingUnder
+
+
+create procedure procedure_GetPeers(@Employee_id int,@working_under int)
+as
+begin
+  select * from tblWorkingUnder where Employee_id = @Employee_id or working_under = @working_under
+end
