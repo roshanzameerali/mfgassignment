@@ -31,7 +31,7 @@
     <Property Name="Employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="First_Name" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Last_Name" Type="varchar" MaxLength="20" />
-    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="70" />
     <Property Name="Role" Type="varchar" MaxLength="20" />
     <Property Name="Age" Type="int" Nullable="false" />
     <Property Name="Gender" Type="varchar" MaxLength="20" />

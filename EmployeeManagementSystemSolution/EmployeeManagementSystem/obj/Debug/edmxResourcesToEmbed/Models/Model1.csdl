@@ -23,7 +23,7 @@
     <Property Name="Employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="First_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Last_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
     <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Age" Type="Int32" Nullable="false" />
     <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
